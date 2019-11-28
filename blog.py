@@ -175,11 +175,12 @@ def edit(id):
         form = ArticleForm(request.form)
         newtitle = form.title.data
         newcontent = form.content.data
-        sorgu2 = "Update articles set title= %s,content=%s where id=%s"
+        sorgu2 = "Update articles Set title= %s,content=%s where id=%s"
         cursor = mysql.connection.cursor()
         cursor.execute(sorgu2,(newtitle,newcontent,id))
         mysql.connection.commit()
         flash("Makale güncellendi.","warning")
+        return redirect(url_for("dashboard"))
 #Çıkış
 @app.route("/logout")
 def cikis():
